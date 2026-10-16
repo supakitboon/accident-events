@@ -405,14 +405,19 @@ if st.button("🔄 อัปเดตข้อมูลล่าสุด", disa
             if added:
                 msg = save_records(current + added, cfg, sha)
                 load.clear()
-                st.success(f"เพิ่มข้อมูลใหม่ {len(added)} รายการ · {msg}")
-                st.dataframe(pd.DataFrame(added)[["date", "location", "fatalities", "injuries", "reference"]],
-                             hide_index=True, width="stretch")
-                st.caption("กดรีเฟรชหน้า (R) เพื่อดูข้อมูลล่าสุดในแผนที่และตาราง")
+                # keep the result across the rerun below, so the page re-reads the new data right away
+                st.session_state["update_result"] = (
+                    f"เพิ่มข้อมูลใหม่ {len(added)} รายการ · {msg}",
+                    pd.DataFrame(added)[["date", "location", "fatalities", "injuries", "reference"]])
+                st.rerun()
             else:
                 st.info(f"ค้นหาแล้วพบ {len(found)} รายการ แต่ไม่มีเหตุการณ์ใหม่ที่ยังไม่อยู่ในระบบ")
         except Exception as e:
             st.error(str(e))
+if "update_result" in st.session_state:
+    text, added_df = st.session_state.pop("update_result")
+    st.success(text)
+    st.dataframe(added_df, hide_index=True, width="stretch")
 if github_cfg() is None:
     st.caption("⚠️ ยังไม่ได้ตั้งค่า GITHUB_TOKEN / GITHUB_REPO: ข้อมูลที่อัปเดตจะบันทึกในเครื่องเท่านั้น "
                "และจะหายเมื่อแอปบน Streamlit Cloud รีสตาร์ท")
