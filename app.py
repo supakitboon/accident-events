@@ -597,11 +597,9 @@ for mi in range(12):
     rows.append({"เดือน": TH_MONTHS[mi], "จำนวนเหตุการณ์": len(s),
                  "ผู้เสียชีวิต (ราย)": int(s.fatalities.sum()), "ผู้บาดเจ็บ (ราย)": int(s.injuries.sum())})
 tbl = pd.DataFrame(rows)
-st.dataframe(tbl, hide_index=True, width="stretch")
-t1, t2, t3 = st.columns(3)
-kpi(t1, "รวมเหตุการณ์", int(tbl["จำนวนเหตุการณ์"].sum()), BLU, "📊")
-kpi(t2, "รวมเสียชีวิต", int(tbl["ผู้เสียชีวิต (ราย)"].sum()), RED, "⚠️")
-kpi(t3, "รวมบาดเจ็บ", int(tbl["ผู้บาดเจ็บ (ราย)"].sum()), ORA, "🩹")
+total = {"เดือน": "รวม", **{c: int(tbl[c].sum()) for c in tbl.columns[1:]}}
+st.dataframe(pd.concat([tbl, pd.DataFrame([total])], ignore_index=True),
+             hide_index=True, width="stretch", height=35 * 14 + 3)
 
 sec("กราฟสถิติรายเดือน")
 have = tbl[tbl["จำนวนเหตุการณ์"] > 0].copy()
@@ -613,15 +611,29 @@ else:
     long = have.melt(id_vars=["m", "ord"],
                      value_vars=["จำนวนเหตุการณ์", "ผู้เสียชีวิต (ราย)", "ผู้บาดเจ็บ (ราย)"],
                      var_name="ประเภท", value_name="จำนวน")
-    st.altair_chart(
-        alt.Chart(long).mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(
-            x=alt.X("m:N", sort=alt.EncodingSortField("ord"), title=None),
-            xOffset="ประเภท:N", y=alt.Y("จำนวน:Q", title=None),
-            color=alt.Color("ประเภท:N", scale=alt.Scale(
-                domain=["จำนวนเหตุการณ์", "ผู้เสียชีวิต (ราย)", "ผู้บาดเจ็บ (ราย)"],
-                range=[BLU, RED, ORA]), legend=alt.Legend(orient="bottom", title=None)),
-            tooltip=["m", "ประเภท", "จำนวน"]).properties(height=320),
-        width="stretch")
+    chart_types = ["แท่งเทียบกัน", "แท่งซ้อน", "เส้น", "พื้นที่"]
+    ctype = st.radio("ชนิดกราฟ", chart_types, horizontal=True)
+    st.caption("คลิกที่ชื่อในคำอธิบายกราฟ (ด้านล่าง) เพื่อเลือกแสดงตัวแปร · กด Shift ค้างเพื่อเลือกหลายตัว · คลิกที่ว่างเพื่อแสดงทั้งหมด")
+    pick = alt.selection_point(fields=["ประเภท"], bind="legend")
+    x_enc = alt.X("m:N", sort=alt.EncodingSortField("ord"), title=None)
+    y_enc = alt.Y("จำนวน:Q", title=None)
+    if ctype == "แท่งซ้อน":
+        y_enc = alt.Y("จำนวน:Q", title=None, stack="zero")
+    color = alt.Color("ประเภท:N", scale=alt.Scale(
+        domain=["จำนวนเหตุการณ์", "ผู้เสียชีวิต (ราย)", "ผู้บาดเจ็บ (ราย)"],
+        range=[BLU, RED, ORA]), legend=alt.Legend(orient="bottom", title=None))
+    base = alt.Chart(long)
+    enc = dict(x=x_enc, y=y_enc, color=color, tooltip=["m", "ประเภท", "จำนวน"],
+               opacity=alt.condition(pick, alt.value(1), alt.value(0.12)))
+    if ctype == "แท่งเทียบกัน":
+        ch = base.mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(xOffset="ประเภท:N", **enc)
+    elif ctype == "แท่งซ้อน":
+        ch = base.mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4).encode(**enc)
+    elif ctype == "เส้น":
+        ch = base.mark_line(point=True, strokeWidth=3).encode(**enc)
+    else:
+        ch = base.mark_area(line=True, opacity=0.5).encode(**{**enc, "opacity": alt.condition(pick, alt.value(0.55), alt.value(0.05))})
+    st.altair_chart(ch.add_params(pick).properties(height=320), width="stretch")
 
 # ---- Cards ----
 sec(f"รายละเอียดเหตุการณ์ · {period}")
