@@ -12,6 +12,54 @@
     "reference": "https://koreajoongangdaily.joins.com/news/2026-10-16/national/socialAffairs/Five-firefighters-injured-in-Bucheon-factory-blaze/"
   },
   {
+    "id": 36,
+    "date": "2026-10-16",
+    "location": "Nae-dong, Bucheon, South Korea",
+    "country": "South Korea",
+    "lat": 37.5215,
+    "lng": 126.7761,
+    "event": "เกิดเพลิงไหม้รุนแรงที่โรงงานพ่นเคลือบสีชิ้นส่วนโลหะสูง 4 ชั้นในย่านแนดง เขตโอจ็อง เมืองพูช็อน ไฟเริ่มลุกไหม้จากห้องทำความสะอาดบริเวณชั้น 3 และลุกลามอย่างรวดเร็วเนื่องจากมีการจัดเก็บของเหลวไวไฟประเภททินเนอร์และสีจำนวนมาก เหตุการณ์นี้ส่งผลให้เจ้าหน้าที่ดับเพลิงและคนงานได้รับบาดเจ็บรวม 7 ราย โดยมีเจ้าหน้าที่ดับเพลิงเกิดภาวะหัวใจหยุดเต้น 1 ราย",
+    "fatalities": 0,
+    "injuries": 7,
+    "reference": "https://www.koreatimes.co.kr/www/nation/2026/10/113_384351.html"
+  },
+  {
+    "id": 30,
+    "date": "2026-10-15",
+    "location": "Kovika Dyes, Chhatral GIDC, Gandhinagar, India",
+    "country": "India",
+    "lat": 23.3323,
+    "lng": 72.4518,
+    "event": "เกิดเหตุระเบิดรุนแรงขึ้นที่โรงงานผลิตสารเคมี Kovika Dyes ในนิคมอุตสาหกรรมชัตราล รัฐคุชราต การสอบสวนเบื้องต้นพบว่าเกิดจากแรงดันสะสมมากเกินไปจนเกิดความขัดข้องทางกลไกที่ถังลดปฏิกิริยาเคมี แรงระเบิดทำให้คนงานที่ปฏิบัติงานอยู่ใกล้เคียงเสียชีวิตในที่เกิดเหตุทันที 4 ราย",
+    "fatalities": 4,
+    "injuries": 0,
+    "reference": "https://www.etvbharat.com/"
+  },
+  {
+    "id": 34,
+    "date": "2026-10-15",
+    "location": "Kovika Dyes & Intermediates, Gandhinagar, India",
+    "country": "India",
+    "lat": 23.3364,
+    "lng": 72.4338,
+    "event": "เกิดเหตุระเบิดอย่างรุนแรงที่โรงงานผลิตสารเคมีและสีย้อมผ้า Kovika Dyes & Intermediates ในเขตนิคมอุตสาหกรรม Chhatral GIDC อำเภอคาลอล จังหวัดคานธีนคร รัฐคุชราต การสอบสวนเบื้องต้นพบว่าเกิดจากท่อเชื่อมต่อถังแรงดันเกิดแรงดันสูงเกินไปจนแตกออกขณะคนงานกำลังทำงานต่อท่อ ส่งผลให้คนงานเสียชีวิตทันทีในที่เกิดเหตุ 4 ราย",
+    "fatalities": 4,
+    "injuries": 0,
+    "reference": "https://economictimes.indiatimes.com/news/india/four-workers-killed-in-blast-at-factory-in-gandhinagars-chhatral-gidc-industrial-area/articleshow/134969900.cms"
+  },
+  {
+    "id": 35,
+    "date": "2026-10-15",
+    "location": "Legend Polyfoam, Sonepat, India",
+    "country": "India",
+    "lat": 28.8955,
+    "lng": 77.0891,
+    "event": "เกิดเพลิงไหม้ขนาดใหญ่ที่โรงงานผลิตที่นอนและโฟม Legend Polyfoam ในหมู่บ้านบาโรตา เขตกุนด์ลี อำเภอโซเนพัต รัฐหรยาณา เปลวเพลิงลุกลามอย่างรวดเร็วและใช้เวลากว่า 6 ชั่วโมงจึงควบคุมได้ โดยเจ้าหน้าที่สันนิษฐานสาเหตุเบื้องต้นจากไฟฟ้าลัดวงจร เหตุการณ์ดังกล่าวทำให้มีคนงานเสียชีวิต 2 ราย และได้รับบาดเจ็บอีก 4 ราย",
+    "fatalities": 2,
+    "injuries": 4,
+    "reference": "https://www.hindustantimes.com/cities/others-cities/two-workers-killed-four-injured-in-fire-at-sonepat-s-mattress-factory-101760581720892.html"
+  },
+  {
     "id": 24,
     "date": "2026-10-14",
     "location": "Kiryat Gat, Israel",
@@ -36,6 +84,42 @@
     "reference": "https://www.koreatimes.co.kr/www/nation/2026/10/fire-at-chemical-company-in-ulsan-extinguished-after-thousands-evacuate-no-casualties-reported"
   },
   {
+    "id": 28,
+    "date": "2026-10-14",
+    "location": "Intel Fab 28, Kiryat Gat, Israel",
+    "country": "Israel",
+    "lat": 31.61,
+    "lng": 34.7642,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้ที่โรงงานผลิตชิปเซมิคอนดักเตอร์ของบริษัท Intel ในเมืองคิรยัตกัต ขณะกำลังถ่ายเทก๊าซไนโตรเจนเข้าสู่ถังกักเก็บ คาดว่าสาเหตุเกิดจากถังก๊าซระเบิดจนส่งผลให้เกิดความกังวลเรื่องการรั่วไหลของก๊าซไนโตรเจนไตรฟลูออไรด์ (NF3) อุบัติเหตุครั้งนี้ส่งผลให้คนงานเสียชีวิต 2 ราย และได้รับบาดเจ็บสาหัส 1 ราย",
+    "fatalities": 2,
+    "injuries": 1,
+    "reference": "https://www.timesofisrael.com/second-worker-dies-of-wounds-sustained-in-intel-plant-blast-in-southern-israel/"
+  },
+  {
+    "id": 29,
+    "date": "2026-10-14",
+    "location": "Onsan National Industrial Complex, Ulsan, South Korea",
+    "country": "South Korea",
+    "lat": 35.4333,
+    "lng": 129.35,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้รุนแรงที่โรงงานเคมีภัณฑ์ในนิคมอุตสาหกรรมแห่งชาติอนซาน เมืองอุลซาน ทางการต้องประกาศระดมกำลังดับเพลิงระดับชาติและสั่งอพยพคนงานกว่า 7,000 คน สันนิษฐานว่าต้นเพลิงเกิดระหว่างกระบวนการถ่ายเทสารโทลูอีนซึ่งเป็นวัตถุไวไฟสูง โดยไม่มีผู้ได้รับบาดเจ็บหรือเสียชีวิต",
+    "fatalities": 0,
+    "injuries": 0,
+    "reference": "https://www.koreatimes.co.kr/"
+  },
+  {
+    "id": 27,
+    "date": "2026-10-13",
+    "location": "Aksaykardandetal Plant, Aksay, Russia",
+    "country": "Russia",
+    "lat": 47.2625,
+    "lng": 39.8661,
+    "event": "เกิดเหตุเพลิงไหม้ขนาดใหญ่ที่โกดังของโรงงาน Aksaykardandetal ในเมืองอักไซ ซึ่งเป็นโรงงานผลิตชิ้นส่วนยานพาหนะและเครื่องจักรกล โดยเพลิงได้ลุกลามกินพื้นที่กว้างกว่า 9,000 ตารางเมตร และทำให้กำแพงโกดังพังถล่มลงมา เจ้าหน้าที่สามารถควบคุมสถานการณ์ได้โดยไม่มีรายงานผู้ได้รับบาดเจ็บหรือเสียชีวิต",
+    "fatalities": 0,
+    "injuries": 0,
+    "reference": "https://kyivindependent.com/massive-fire-at-industrial-plant-in-russias-rostov-oblast-spreads-to-9-000-square-meters/"
+  },
+  {
     "id": 23,
     "date": "2026-10-09",
     "location": "Agioi Theodoroi, Greece",
@@ -46,6 +130,42 @@
     "fatalities": 1,
     "injuries": 1,
     "reference": "https://apnews.com/article/greece-oil-refinery-explosion-injuries-motor-oil-athens"
+  },
+  {
+    "id": 33,
+    "date": "2026-10-06",
+    "location": "Carbide Industries, Louisville, Kentucky, United States",
+    "country": "United States",
+    "lat": 38.2045,
+    "lng": -85.8458,
+    "event": "เกิดเหตุเพลิงไหม้แบบวาบไฟที่โรงงานผลิตสารเคมี Carbide Industries ในย่านรับเบอร์ทาวน์ เมืองลุยวิลล์ รัฐเคนทักกี เหตุเกิดขึ้นขณะคนงานกำลังเคลื่อนย้ายภาชนะบรรจุสารแคลเซียมคาร์ไบด์ขนาด 5,000 ปอนด์ในบริเวณลานด้านนอก ส่งผลให้ผู้รับเหมาได้รับบาดเจ็บจากแผลไฟไหม้ถูกนำส่งโรงพยาบาล 2 ราย",
+    "fatalities": 0,
+    "injuries": 2,
+    "reference": "https://www.wlky.com/article/louisville-chemical-plant-explodes-carbide-industries/74050321"
+  },
+  {
+    "id": 32,
+    "date": "2026-08-28",
+    "location": "Daewon Industrial, Cheonan, South Korea",
+    "country": "South Korea",
+    "lat": 36.8151,
+    "lng": 127.1139,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้รุนแรงที่โรงงานผลิตส่วนผสมของสีและกรดไขมัน Daewon Industrial ในเขตดงนัมกู เมืองชอนอัน เปลวเพลิงที่ลุกไหม้อย่างหนักทำให้โครงสร้างอาคารถล่มลงมาทับคนงาน ส่งผลให้มีผู้เสียชีวิตรวม 3 ราย โดยสาเหตุของการระเบิดยังอยู่ระหว่างการตรวจสอบของเจ้าหน้าที่ตำรวจและหน่วยดับเพลิง",
+    "fatalities": 3,
+    "injuries": 0,
+    "reference": "https://www.koreatimes.co.kr/www/nation/2026/10/113_383870.html"
+  },
+  {
+    "id": 31,
+    "date": "2026-08-18",
+    "location": "Brent Industries, Toledo, Ohio, United States",
+    "country": "United States",
+    "lat": 41.624,
+    "lng": -83.582,
+    "event": "เกิดเหตุระเบิดสองครั้งซ้อนตามด้วยเพลิงไหม้ครั้งใหญ่ที่โรงงานรีไซเคิลอุตสาหกรรม Brent Industries ในเมืองโทลีโด รัฐโอไฮโอ ระหว่างช่วงสับเปลี่ยนกะทำงาน แรงระเบิดส่งผลให้อาคารพังถล่มลงมาบางส่วนและถังเก็บสารเคมีฉีกขาดเสียหาย ส่งผลให้มีคนงานเสียชีวิต 2 ราย และได้รับบาดเจ็บเล็กน้อย 3 ราย โดยสาเหตุของการระเบิดยังอยู่ระหว่างการสอบสวน",
+    "fatalities": 2,
+    "injuries": 3,
+    "reference": "https://www.cbs19.tv/video/news/local/2-killed-in-at-ohio-recycling-facility-as-fire-causes-building-collapse/501-fd5620fe-8efa-4570-8513-af8da023dc76"
   },
   {
     "id": 12,
