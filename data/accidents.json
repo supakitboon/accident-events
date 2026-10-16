@@ -12,6 +12,18 @@
     "reference": "https://koreajoongangdaily.joins.com/news/2026-10-16/national/socialAffairs/Five-firefighters-injured-in-Bucheon-factory-blaze/"
   },
   {
+    "id": 30,
+    "date": "2026-10-15",
+    "location": "Kovika Dyes, Chhatral GIDC, Gandhinagar, India",
+    "country": "India",
+    "lat": 23.3323,
+    "lng": 72.4518,
+    "event": "เกิดเหตุระเบิดรุนแรงขึ้นที่โรงงานผลิตสารเคมี Kovika Dyes ในนิคมอุตสาหกรรมชัตราล รัฐคุชราต การสอบสวนเบื้องต้นพบว่าเกิดจากแรงดันสะสมมากเกินไปจนเกิดความขัดข้องทางกลไกที่ถังลดปฏิกิริยาเคมี แรงระเบิดทำให้คนงานที่ปฏิบัติงานอยู่ใกล้เคียงเสียชีวิตในที่เกิดเหตุทันที 4 ราย",
+    "fatalities": 4,
+    "injuries": 0,
+    "reference": "https://www.etvbharat.com/"
+  },
+  {
     "id": 24,
     "date": "2026-10-14",
     "location": "Kiryat Gat, Israel",
@@ -34,6 +46,42 @@
     "fatalities": 0,
     "injuries": 0,
     "reference": "https://www.koreatimes.co.kr/www/nation/2026/10/fire-at-chemical-company-in-ulsan-extinguished-after-thousands-evacuate-no-casualties-reported"
+  },
+  {
+    "id": 28,
+    "date": "2026-10-14",
+    "location": "Intel Fab 28, Kiryat Gat, Israel",
+    "country": "Israel",
+    "lat": 31.61,
+    "lng": 34.7642,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้ที่โรงงานผลิตชิปเซมิคอนดักเตอร์ของบริษัท Intel ในเมืองคิรยัตกัต ขณะกำลังถ่ายเทก๊าซไนโตรเจนเข้าสู่ถังกักเก็บ คาดว่าสาเหตุเกิดจากถังก๊าซระเบิดจนส่งผลให้เกิดความกังวลเรื่องการรั่วไหลของก๊าซไนโตรเจนไตรฟลูออไรด์ (NF3) อุบัติเหตุครั้งนี้ส่งผลให้คนงานเสียชีวิต 2 ราย และได้รับบาดเจ็บสาหัส 1 ราย",
+    "fatalities": 2,
+    "injuries": 1,
+    "reference": "https://www.timesofisrael.com/second-worker-dies-of-wounds-sustained-in-intel-plant-blast-in-southern-israel/"
+  },
+  {
+    "id": 29,
+    "date": "2026-10-14",
+    "location": "Onsan National Industrial Complex, Ulsan, South Korea",
+    "country": "South Korea",
+    "lat": 35.4333,
+    "lng": 129.35,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้รุนแรงที่โรงงานเคมีภัณฑ์ในนิคมอุตสาหกรรมแห่งชาติอนซาน เมืองอุลซาน ทางการต้องประกาศระดมกำลังดับเพลิงระดับชาติและสั่งอพยพคนงานกว่า 7,000 คน สันนิษฐานว่าต้นเพลิงเกิดระหว่างกระบวนการถ่ายเทสารโทลูอีนซึ่งเป็นวัตถุไวไฟสูง โดยไม่มีผู้ได้รับบาดเจ็บหรือเสียชีวิต",
+    "fatalities": 0,
+    "injuries": 0,
+    "reference": "https://www.koreatimes.co.kr/"
+  },
+  {
+    "id": 27,
+    "date": "2026-10-13",
+    "location": "Aksaykardandetal Plant, Aksay, Russia",
+    "country": "Russia",
+    "lat": 47.2625,
+    "lng": 39.8661,
+    "event": "เกิดเหตุเพลิงไหม้ขนาดใหญ่ที่โกดังของโรงงาน Aksaykardandetal ในเมืองอักไซ ซึ่งเป็นโรงงานผลิตชิ้นส่วนยานพาหนะและเครื่องจักรกล โดยเพลิงได้ลุกลามกินพื้นที่กว้างกว่า 9,000 ตารางเมตร และทำให้กำแพงโกดังพังถล่มลงมา เจ้าหน้าที่สามารถควบคุมสถานการณ์ได้โดยไม่มีรายงานผู้ได้รับบาดเจ็บหรือเสียชีวิต",
+    "fatalities": 0,
+    "injuries": 0,
+    "reference": "https://kyivindependent.com/massive-fire-at-industrial-plant-in-russias-rostov-oblast-spreads-to-9-000-square-meters/"
   },
   {
     "id": 23,
