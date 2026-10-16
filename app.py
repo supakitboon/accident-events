@@ -10,6 +10,7 @@ import json
 import os
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, timedelta
 from html import escape
 from pathlib import Path
@@ -55,6 +56,16 @@ st.markdown(f"""
   .hero-period .k {{ font-size:11px; text-transform:uppercase; letter-spacing:.08em; opacity:.7; }}
   .hero-period .v {{ font-size:20px; font-weight:700; background:rgba(255,255,255,.15);
                      padding:4px 14px; border-radius:20px; margin-top:4px; display:inline-block; }}
+
+  @media (max-width: 640px) {{
+    .block-container {{ padding-top: 3.5rem; padding-left: 1rem; padding-right: 1rem; }}
+    .hero {{ flex-wrap:wrap; padding:16px; gap:12px 14px; }}
+    .hero img {{ height:44px; }}
+    .hero-title {{ font-size:19px; line-height:1.35; }}
+    .hero-sub {{ font-size:11px; }}
+    .hero-period {{ margin-left:0; text-align:left; width:100%; }}
+    .hero-period .v {{ font-size:16px; }}
+  }}
 
   /* Section titles */
   .sec {{ display:flex; align-items:center; gap:10px; margin:30px 0 12px; font-size:19px;
@@ -318,6 +329,93 @@ def merge_records(existing: list, new: list) -> list:
     return added
 
 
+BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
+
+
+def link_state(url: str):
+    """Check a link. Returns (state, final_url): state True = works, False = broken,
+    None = cannot tell (site blocks bots / timeout / server error). None is treated as 'keep'."""
+    if not str(url).startswith("http"):
+        return False, url
+    try:
+        r = requests.get(url, headers={"User-Agent": BROWSER_UA, "Accept": "text/html,*/*"},
+                         timeout=12, allow_redirects=True, stream=True)
+        code, final = r.status_code, r.url
+        r.close()
+    except requests.exceptions.Timeout:
+        return None, url
+    except requests.exceptions.SSLError:
+        return None, url
+    except requests.exceptions.RequestException:  # DNS failure, refused connection, bad URL
+        return False, url
+    if code < 400:
+        return True, final
+    if code in (404, 410):
+        return False, url
+    return None, url  # 401/403/429/5xx: usually bot protection or a temporary problem
+
+
+def find_replacement_link(rec: dict, key: str, models: list, bad_urls: list):
+    """Ask Gemini (with Google Search) for a working article URL about this event."""
+    prompt = f"""Find a reliable news article URL about this industrial accident.
+Date: {rec.get("date")}
+Location: {rec.get("location")}
+Description: {rec.get("event")}
+
+Rules:
+- The URL must be a direct link to a news article about this specific event, and it must currently work.
+- Do NOT return any of these broken or rejected URLs: {json.dumps(bad_urls)}
+- Return ONLY raw JSON like {{"reference": "https://..."}} with no markdown and no other text.
+- If you cannot find a working article, return {{"reference": ""}}."""
+    for _ in range(2):  # a second try with the rejected candidates excluded
+        try:
+            data = gemini_call({"contents": [{"parts": [{"text": prompt}]}],
+                                "tools": [{"googleSearch": {}}],
+                                "generationConfig": {"temperature": 0.2, "maxOutputTokens": 2048}}, key, models)
+        except RuntimeError:
+            return None
+        parts = data.get("candidates", [{}])[0].get("content", {}).get("parts", [])
+        raw = "".join(p.get("text", "") for p in parts if not p.get("thought"))
+        m = re.search(r"https?://[^\s\"'<>\]\)]+", raw)
+        if not m:
+            return None
+        url = m.group(0).rstrip(".,")
+        state, final = link_state(url)
+        if state is not False:
+            return final if state else url
+        bad_urls = bad_urls + [url]
+        prompt = prompt.replace("Do NOT return any of these broken or rejected URLs:",
+                                f"Do NOT return any of these broken or rejected URLs: {json.dumps(bad_urls)} and also")
+    return None
+
+
+def check_record(rec: dict, key: str, models: list):
+    """Verify one record's link. Returns (record, status): ok | fixed | dead."""
+    rec = dict(rec)
+    state, final = link_state(rec.get("reference", ""))
+    if state is not False:
+        if state and final and final != rec.get("reference") and "vertexaisearch" in rec.get("reference", ""):
+            rec["reference"] = final  # replace a Google redirect wrapper with the real article URL
+        return rec, "ok"
+    new = find_replacement_link(rec, key, models, [rec.get("reference", "")])
+    if new:
+        rec["reference"] = new
+        return rec, "fixed"
+    return rec, "dead"
+
+
+def verify_links(records: list):
+    """Check many records in parallel. Returns a list of (record, status)."""
+    if not records:
+        return []
+    key = secret("GEMINI_API_KEY")
+    custom = secret("GEMINI_MODEL")
+    models = [custom] if custom else GEMINI_MODELS
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        return list(pool.map(lambda r: check_record(r, key, models), records))
+
+
 def github_cfg():
     """(token, repo, branch) when GitHub saving is configured, else None."""
     token, repo = secret("GITHUB_TOKEN"), secret("GITHUB_REPO")
@@ -401,13 +499,20 @@ if st.button("🔄 อัปเดตข้อมูลล่าสุด", disa
             found = fetch_new_records(date.today() - timedelta(days=int(days)), date.today())
             cfg = github_cfg()
             current, sha = read_current(cfg)
-            added = merge_records(current, found)
+            known = {f'{a["date"]}|{a["location"]}' for a in current}
+            fresh = [r for r in found if valid_record(r) and f'{r["date"]}|{r["location"]}' not in known]
+            with st.spinner("กำลังตรวจสอบลิงก์อ้างอิง และหาลิงก์ใหม่ถ้าลิงก์เสีย..."):
+                checked = verify_links(fresh)
+            n_fixed = sum(1 for _, stt in checked if stt == "fixed")
+            n_dead = sum(1 for _, stt in checked if stt == "dead")
+            added = merge_records(current, [r for r, stt in checked if stt != "dead"])
             if added:
                 msg = save_records(current + added, cfg, sha)
                 load.clear()
+                notes = (f" · เปลี่ยนลิงก์ที่ใช้ไม่ได้เป็นลิงก์ใหม่ {n_fixed} รายการ" if n_fixed else "") +                         (f" · ตัดทิ้ง {n_dead} รายการที่หาลิงก์ที่ใช้ได้ไม่พบ" if n_dead else "")
                 # keep the result across the rerun below, so the page re-reads the new data right away
                 st.session_state["update_result"] = (
-                    f"เพิ่มข้อมูลใหม่ {len(added)} รายการ · {msg}",
+                    f"เพิ่มข้อมูลใหม่ {len(added)} รายการ · {msg}{notes}",
                     pd.DataFrame(added)[["date", "location", "fatalities", "injuries", "reference"]])
                 st.rerun()
             else:
@@ -418,6 +523,28 @@ if "update_result" in st.session_state:
     text, added_df = st.session_state.pop("update_result")
     st.success(text)
     st.dataframe(added_df, hide_index=True, width="stretch")
+if st.button("🔗 ตรวจสอบลิงก์ทั้งหมดและแก้ลิงก์ที่เสีย", disabled=not allowed):
+    with st.spinner("กำลังตรวจสอบลิงก์ทุกรายการ (อาจใช้เวลาหลายนาที)..."):
+        try:
+            cfg = github_cfg()
+            current, sha = read_current(cfg)
+            checked = verify_links(current)
+            report = [{"สถานะ": "แก้ลิงก์แล้ว" if stt == "fixed" else "ลิงก์เสีย (ไม่พบลิงก์ใหม่ ยังไม่แก้)",
+                       "สถานที่": new["location"], "ลิงก์เดิม": old["reference"], "ลิงก์ใหม่": new["reference"]}
+                      for old, (new, stt) in zip(current, checked) if stt in ("fixed", "dead")]
+            updated = [new for new, _ in checked]
+            if any(o["reference"] != n["reference"] for o, n in zip(current, updated)):
+                msg = save_records(updated, cfg, sha)
+                load.clear()
+                st.session_state["update_result"] = (f"ตรวจสอบเสร็จ · {msg}", pd.DataFrame(report))
+                st.rerun()
+            elif report:
+                st.warning(f"พบลิงก์เสีย {len(report)} รายการ แต่หาลิงก์ใหม่ไม่ได้")
+                st.dataframe(pd.DataFrame(report), hide_index=True, width="stretch")
+            else:
+                st.success(f"ลิงก์ทั้ง {len(current)} รายการใช้งานได้ (หรือเว็บไซต์ไม่อนุญาตให้ตรวจสอบ)")
+        except Exception as e:
+            st.error(str(e))
 if github_cfg() is None:
     st.caption("⚠️ ยังไม่ได้ตั้งค่า GITHUB_TOKEN / GITHUB_REPO: ข้อมูลที่อัปเดตจะบันทึกในเครื่องเท่านั้น "
                "และจะหายเมื่อแอปบน Streamlit Cloud รีสตาร์ท")
