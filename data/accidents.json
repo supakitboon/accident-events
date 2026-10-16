@@ -60,6 +60,18 @@
     "reference": "https://www.hindustantimes.com/cities/others-cities/two-workers-killed-four-injured-in-fire-at-sonepat-s-mattress-factory-101760581720892.html"
   },
   {
+    "id": 41,
+    "date": "2026-10-15",
+    "location": "Agioi Theodoroi, Greece",
+    "country": "Greece",
+    "lat": 37.9281,
+    "lng": 23.0827,
+    "event": "เกิดเหตุระเบิดซ้ำขึ้นอีกครั้งที่โรงกลั่นน้ำมัน Motor Oil Hellas ในพื้นที่ Agioi Theodoroi บริเวณหน่วยผลิต 750 ขณะหยุดเดินเครื่องเพื่อซ่อมบำรุงอุปกรณ์แลกเปลี่ยนความร้อนแรงดันสูง ส่งผลให้คนงาน 2 รายได้รับบาดเจ็บจากกระดูกหักและแผลไฟไหม้ โดยนับเป็นอุบัติเหตุรุนแรงครั้งที่สองของโรงกลั่นแห่งนี้ในรอบสัปดาห์เดียว",
+    "fatalities": 0,
+    "injuries": 2,
+    "reference": "https://www.tovima.com/society/explosion-again-at-motor-oil-refinery-two-injured/"
+  },
+  {
     "id": 24,
     "date": "2026-10-14",
     "location": "Kiryat Gat, Israel",
@@ -108,6 +120,18 @@
     "reference": "https://www.koreatimes.co.kr/"
   },
   {
+    "id": 40,
+    "date": "2026-10-14",
+    "location": "Ulsan, South Korea",
+    "country": "South Korea",
+    "lat": 35.4385,
+    "lng": 129.3518,
+    "event": "เกิดเพลิงไหม้รุนแรงที่โรงงานเคมีภัณฑ์ Busung Chemical ในนิคมอุตสาหกรรมอนซาน โดยเริ่มจากถังเก็บสารโทลูอีนกลางแจ้งขนาด 8,000 ลิตร ขณะกำลังถ่ายโอนสารเคมี และลุกลามไปยังถังเคมีข้างเคียงอีก 7 ถัง ควันหนาทึบทำให้ต้องอพยพคนงานราว 7,000 คนจากไซต์ก่อสร้างโครงการ Shaheen ของ S-Oil ในบริเวณใกล้เคียง โดยไม่มีผู้ได้รับบาดเจ็บหรือเสียชีวิต",
+    "fatalities": 0,
+    "injuries": 0,
+    "reference": "https://en.yna.co.kr/view/AEN20261014004600315"
+  },
+  {
     "id": 27,
     "date": "2026-10-13",
     "location": "Aksaykardandetal Plant, Aksay, Russia",
@@ -142,6 +166,42 @@
     "fatalities": 0,
     "injuries": 2,
     "reference": "https://www.wlky.com/article/louisville-chemical-plant-explodes-carbide-industries/74050321"
+  },
+  {
+    "id": 39,
+    "date": "2026-09-30",
+    "location": "Mangaluru, India",
+    "country": "India",
+    "lat": 12.9644,
+    "lng": 74.8342,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้รุนแรงที่หน่วย Coker Hydrotreater (CHT) ภายในโรงกลั่นน้ำมัน Mangalore Refinery and Petrochemicals Limited (MRPL) จากการแตกร้าวของตัวแยกความดันสูงที่ทำงานด้วยความดันราว 70 บาร์ ส่งผลให้คนงานสัญญาจ้างเสียชีวิต 1 ราย และบาดเจ็บ 9 ราย แรงระเบิดทำให้สิ่งปลูกสร้างและบ้านเรือนในชุมชนโดยรอบสั่นสะเทือนและกระจกแตกจำนวนมาก",
+    "fatalities": 1,
+    "injuries": 9,
+    "reference": "https://www.thehindu.com/news/cities/Mangalore/one-dies-in-blast-at-mangalore-refinery-and-petrochemicals-premises-blaze-brought-under-control/article68702319.ece"
+  },
+  {
+    "id": 38,
+    "date": "2026-09-29",
+    "location": "Puerto General San Martín, Argentina",
+    "country": "Argentina",
+    "lat": -32.7161,
+    "lng": -60.7308,
+    "event": "เกิดเหตุถังบรรจุสารเมทานอลระเบิดและลุกไหม้อย่างรุนแรงที่โรงงานผลิตไบโอดีเซล Albardón Bio ในย่าน Punta Quebracho ขณะคนงานรับเหมากำลังปฏิบัติงานซ่อมบำรุง ส่งผลให้มีผู้เสียชีวิต 3 ราย และได้รับบาดเจ็บสาหัส 4 ราย โดยแรงระเบิดทำให้โครงสร้างอาคารพังถล่มเสียหายและต้องสั่งอพยพผู้คนในรัศมี 200 เมตร",
+    "fatalities": 3,
+    "injuries": 4,
+    "reference": "https://www.pagina12.com.ar/771802-dos-muertos-y-cuatro-heridos-por-una-explosion-en-una-planta-industrial"
+  },
+  {
+    "id": 37,
+    "date": "2026-09-28",
+    "location": "Battle Creek, United States",
+    "country": "United States",
+    "lat": 42.3168,
+    "lng": -85.2475,
+    "event": "เกิดเหตุระเบิดและเพลิงไหม้ที่โรงงานแปรรูปพลาสติก Franklin Plastics บนถนน Hill Brady ส่งผลให้คนงาน 1 รายได้รับบาดเจ็บสาหัสจากแผลไฟไหม้รุนแรงตามร่างกาย เจ้าหน้าที่ดับเพลิงระบุว่าความเสียหายจำกัดอยู่เฉพาะบริเวณเครื่องจักรและพื้นที่โดยรอบ โดยมีสาเหตุเบื้องต้นจากอุบัติเหตุในกระบวนการทำงาน",
+    "fatalities": 0,
+    "injuries": 1,
+    "reference": "https://www.battlecreekmi.gov/CivicAlerts.aspx?AID=1824"
   },
   {
     "id": 32,
